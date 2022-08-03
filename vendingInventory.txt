@@ -4,4 +4,4 @@ A2,Twix,130,19
 B3,Rolo,125,10
 A3,Tayto,100,12
 A4,Walkers,110,5
-B1,Cola,160,8
+B1,Cola,160,1

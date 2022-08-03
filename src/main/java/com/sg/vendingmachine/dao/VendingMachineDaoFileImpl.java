@@ -3,7 +3,6 @@ package com.sg.vendingmachine.dao;
 import com.sg.vendingmachine.dto.Item;
 
 import java.io.*;
-import java.util.List;
 import java.util.Scanner;
 
 public class VendingMachineDaoFileImpl implements VendingMachineDao
@@ -11,12 +10,22 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao
     public static final String INVENTORY_FILE = "vendingInventory.txt";
     public static final String DELIMITER = ",";
 
+    /**
+     * Converts a string representation of an item into an Item object.
+     * @param itemAsText String to be converted into an Item object.
+     * @return Item object that contains the data from the string representation.
+     */
     private Item unmarshallItem(String itemAsText)
     {
         String[] itemTokens = itemAsText.split(DELIMITER);
         return new Item(itemTokens[0], itemTokens[1], Integer.parseInt(itemTokens[2]), Integer.parseInt(itemTokens[3]));
     }
 
+    /**
+     * Converts an item into an appropriate String to be used in the inventory CSV.
+     * @param item Item to be converted to string.
+     * @return String representation of item object.
+     */
     private String marshallItem(Item item)
     {
         String itemAsText = item.getButtonID() + DELIMITER;
@@ -28,7 +37,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao
 
     /**
      * Loads the Inventory of Items from the CSV file.
-     * @throws VendingMachinePersistenceException
+     * @throws VendingMachinePersistenceException when file cannot be found.
      */
     public void loadInventory() throws VendingMachinePersistenceException
     {
@@ -55,7 +64,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao
 
     /**
      * Overwrites the current CSV file with the current state of the items held in the DTO
-     * @throws VendingMachinePersistenceException
+     * @throws VendingMachinePersistenceException when Inventory file cannot be written to.
      */
     public void writeInventory() throws VendingMachinePersistenceException
     {

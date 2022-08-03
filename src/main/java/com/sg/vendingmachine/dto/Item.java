@@ -37,19 +37,9 @@ public class Item
         return name;
     }
 
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
     public int getCost()
     {
         return cost;
-    }
-
-    public void setCost(int cost)
-    {
-        this.cost = cost;
     }
 
     public int getInventory()
@@ -57,9 +47,9 @@ public class Item
         return inventory;
     }
 
-    public void setInventory(int inventory)
+    public void decreaseInventory()
     {
-        this.inventory = inventory;
+        inventory--;
     }
 
     public static void addItem(Item newItem)
@@ -67,20 +57,6 @@ public class Item
         Item.items.put(newItem.getButtonID(), newItem);
     }
 
-    public static int vendItem(String buttonID, int payment) throws NoItemInventoryException, InsufficientFundsException
-    {
-        Item vendedItem = Item.items.get(buttonID);
-        if (vendedItem ==  null || vendedItem.inventory <= 0)
-        {
-            throw new NoItemInventoryException();
-        }
-        if (payment < vendedItem.cost)
-        {
-            throw new InsufficientFundsException();
-        }
-        vendedItem.inventory--;
-        return payment-vendedItem.cost;
-    }
 
     @Override
     public String toString()
