@@ -10,33 +10,36 @@ import java.util.Scanner;
 public class VendingMachineDaoFileImpl implements VendingMachineDao
 {
     public static final String INVENTORY_FILE = "vendingInventory.txt";
-    public static final String DELIMITER = "::";
+    public static final String DELIMITER = ",";
 
     private Item unmarshallItem(String itemAsText)
     {
         String[] itemTokens = itemAsText.split(DELIMITER);
-        return new Item(itemTokens[0], Float.parseFloat(itemTokens[1]), Integer.parseInt(itemTokens[2]));
+        return new Item(itemTokens[0], itemTokens[1], Integer.parseInt(itemTokens[2]), Integer.parseInt(itemTokens[3]));
     }
 
-    private void loadInventory() throws VendingMachinePersistenceException
+    public void loadInventory() throws VendingMachinePersistenceException
     {
         Scanner scanner;
 
-        try {
+        try
+        {
             scanner = new Scanner(new BufferedReader(new FileReader(INVENTORY_FILE)));
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e)
+        {
             throw new VendingMachinePersistenceException(
                     "Could not load inventory data into memory.", e);
         }
-        String currentLine;
-        Item currentItem;
 
         while (scanner.hasNextLine()) {
-            currentLine = scanner.nextLine();
-            currentItem = unmarshallItem(currentLine);
-
-            Item.Items.add(currentItem);
+            Item.addItem
+            (   unmarshallItem
+                (   scanner.nextLine()
+                )
+            );
         }
         scanner.close();
     }
+
+
 }

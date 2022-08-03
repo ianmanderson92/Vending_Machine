@@ -1,20 +1,35 @@
 package com.sg.vendingmachine.dto;
 
-import java.util.ArrayList;
+import com.sg.vendingmachine.service.InsufficientFundsException;
+import com.sg.vendingmachine.service.NoItemInventoryException;
+
+import java.util.HashMap;
 
 public class Item
 {
+    private String buttonID;
     private String name;
-    private float cost;
+    private int cost;
     private int inventory;
 
-    public static ArrayList<Item> Items = new ArrayList<>();
+    public static HashMap<String,Item> items = new HashMap<String, Item>();
 
-    public Item(String name, float cost, int inventory)
+    public Item(String buttonID, String name, int cost, int inventory)
     {
+        this.buttonID = buttonID;
         this.name = name;
         this.cost = cost;
         this.inventory = inventory;
+    }
+
+    public String getButtonID()
+    {
+        return buttonID;
+    }
+
+    public void setButtonID(String buttonID)
+    {
+        this.buttonID = buttonID;
     }
 
     public String getName()
@@ -27,12 +42,12 @@ public class Item
         this.name = name;
     }
 
-    public float getCost()
+    public int getCost()
     {
         return cost;
     }
 
-    public void setCost(float cost)
+    public void setCost(int cost)
     {
         this.cost = cost;
     }
@@ -47,11 +62,32 @@ public class Item
         this.inventory = inventory;
     }
 
+    public static void addItem(Item newItem)
+    {
+        Item.items.put(newItem.getButtonID(), newItem);
+    }
+
+    public static int vendItem(String buttonID, int payment) throws NoItemInventoryException, InsufficientFundsException
+    {
+        Item vendedItem = Item.items.get(buttonID);
+        if (vendedItem ==  null || vendedItem.inventory <= 0)
+        {
+            throw new NoItemInventoryException();
+        }
+        if (payment < vendedItem.cost)
+        {
+            throw new InsufficientFundsException();
+        }
+        vendedItem.inventory--;
+        return payment-vendedItem.cost;
+    }
+
     @Override
     public String toString()
     {
         return "Item{" +
-                "name='" + name + '\'' +
+                "buttonID='" + buttonID + '\'' +
+                ", name='" + name + '\'' +
                 ", cost=" + cost +
                 ", inventory=" + inventory +
                 '}';
