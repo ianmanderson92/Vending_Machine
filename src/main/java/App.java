@@ -20,6 +20,7 @@ public class App
 
         myDao.loadInventory();
         myView.displayItems();
+        myDao.writeInventory();
         controller.run();
     }
 }
