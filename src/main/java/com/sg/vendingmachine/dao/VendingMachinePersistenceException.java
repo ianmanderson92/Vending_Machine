@@ -2,13 +2,13 @@ package com.sg.vendingmachine.dao;
 
 public class VendingMachinePersistenceException extends Exception
 {
-    public VendingMachinePersistenceException(String message)
+    public VendingMachinePersistenceException( String message )
     {
-        super(message);
+        super( message );
     }
 
-    public VendingMachinePersistenceException(String message, Throwable cause)
+    public VendingMachinePersistenceException( String message, Throwable cause )
     {
-        super(message, cause);
+        super( message, cause );
     }
 }

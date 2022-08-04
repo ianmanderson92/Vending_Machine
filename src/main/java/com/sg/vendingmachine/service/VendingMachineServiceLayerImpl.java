@@ -9,17 +9,26 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
     private VendingMachineAuditDao auditDao;
     VendingMachineDao dao;
 
-    public VendingMachineServiceLayerImpl(VendingMachineDao dao, VendingMachineAuditDao auditDao)
+    public VendingMachineServiceLayerImpl( VendingMachineDao dao, VendingMachineAuditDao auditDao )
     {
         this.dao = dao;
         this.auditDao = auditDao;
     }
 
+    /**
+     * Loads the Inventory of Items from the CSV file. Logs to audit.
+     * @throws VendingMachinePersistenceException when inventory file cannot be found.
+     */
     public void loadInventory() throws VendingMachinePersistenceException
     {
         dao.loadInventory();
     }
 
+    /**
+     * Overwrites the current CSV file with the current state of the items held in the DTO
+     * Logs to audit.
+     * @throws VendingMachinePersistenceException when inventory file cannot be written to.
+     */
     public void writeInventory() throws VendingMachinePersistenceException
     {
         dao.writeInventory();
@@ -32,13 +41,13 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
      * @param string to be checked for numeric value.
      * @return true if string is numeric, false if not.
      */
-    public boolean isNumeric(String string)
+    public boolean isNumeric( String string )
     {
         try
         {
-            Double.parseDouble(string);
+            Double.parseDouble( string );
             return true;
-        } catch(NumberFormatException e)
+        } catch( NumberFormatException e )
         {
             return false;
         }

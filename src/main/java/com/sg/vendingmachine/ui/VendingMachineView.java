@@ -1,5 +1,6 @@
 package com.sg.vendingmachine.ui;
 
+import com.sg.vendingmachine.dto.Change;
 import com.sg.vendingmachine.dto.Item;
 
 import java.math.BigDecimal;
@@ -9,7 +10,7 @@ public class VendingMachineView
 {
     private UserIO io;
 
-    public VendingMachineView(UserIO io)
+    public VendingMachineView( UserIO io )
     {
         this.io = io;
     }
@@ -20,7 +21,7 @@ public class VendingMachineView
      */
     public void displayItems()
     {
-        io.print( "=== Item's Available ===" );
+        io.print( "=== Items Available ===" );
         for( Item currentItem : Item.items.values() )
         {
             if ( currentItem.getInventory() > 0 )
@@ -48,9 +49,24 @@ public class VendingMachineView
         return io.readString("Please input button code for item.");
     }
 
-    public void displayException(Exception exceptionToDisplay)
+    public void displayException( Exception exceptionToDisplay )
     {
-        io.print(exceptionToDisplay.getMessage());
-        io.readString("Press ENTER to continue.");
+        io.print( exceptionToDisplay.getMessage() );
+        displayWaitMessage();
+    }
+
+    public void displayWaitMessage()
+    {
+        io.readString( "Please press ENTER to continue." );
+    }
+
+    public void displayChange(Change changeToDisplay)
+    {
+        io.print(changeToDisplay.toString() );
+    }
+
+    public void displayVendedItem(Item itemToDisplay)
+    {
+        io.print( "Vending: " + itemToDisplay.getName() + "\n" );
     }
 }

@@ -1,0 +1,13 @@
+2022-08-03T23:10:03.446675500 : userChoice: B1,userInputInt: 170,
+Item{buttonID='B1', name='Cola', cost=160, inventory=0}Change Due:
+QUARTER- 0,
+DIME- 1,
+NICKEL- 0,
+PENNY- 0
+
+2022-08-03T23:10:14.617241300 : userChoice: GH,userInputInt: 600,
+item not in inventory.
+
+2022-08-03T23:10:24.968855 : userChoice: A4,userInputInt: 90,
+insufficient funds to purchase item.
+

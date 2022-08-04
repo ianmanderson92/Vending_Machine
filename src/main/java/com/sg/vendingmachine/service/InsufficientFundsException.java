@@ -2,14 +2,14 @@ package com.sg.vendingmachine.service;
 
 public class InsufficientFundsException extends Exception
 {
-    public InsufficientFundsException(String message)
+    public InsufficientFundsException( String message )
     {
-        super(message);
+        super( message );
     }
 
-    public InsufficientFundsException(String message, Throwable cause)
+    public InsufficientFundsException( String message, Throwable cause )
     {
-        super(message, cause);
+        super( message, cause );
     }
 
 }

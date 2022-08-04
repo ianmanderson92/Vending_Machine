@@ -6,5 +6,5 @@ public interface VendingMachineServiceLayer
 {
     public void loadInventory() throws VendingMachinePersistenceException;
     public void writeInventory() throws VendingMachinePersistenceException;
-    public boolean isNumeric(String str);
+    public boolean isNumeric( String str );
 }

@@ -1,7 +1,10 @@
 package com.sg.unitTest;
 
 import com.sg.vendingmachine.controller.VendingMachineController;
+import com.sg.vendingmachine.dto.Change;
+import com.sg.vendingmachine.dto.Denomination;
 import com.sg.vendingmachine.dto.Item;
+import com.sg.vendingmachine.dto.Vend;
 import com.sg.vendingmachine.ui.UserIO;
 import com.sg.vendingmachine.ui.UserIOConsoleImpl;
 import com.sg.vendingmachine.ui.VendingMachineView;
@@ -32,8 +35,28 @@ public class VendingMachineTest
         Item.items.put( testItem.getButtonID(), testItem );
         try
         {
-            int resultChange = VendingMachineController.vendItem( "ZZ", 105 );
-            assertEquals( 5, resultChange, "Incorrect change given." );
+            Vend resultVend = VendingMachineController.vendItem( "ZZ", 105 );
+            Change resultChange = resultVend.getChangeDue();
+            assertEquals
+                (   0
+                ,   resultChange.changeArray[Denomination.PENNY.index]
+                ,   "Incorrect change given."
+                );
+            assertEquals
+                (   1
+                ,   resultChange.changeArray[Denomination.NICKEL.index]
+                ,   "Incorrect change given."
+                );
+            assertEquals
+                (   0
+                ,   resultChange.changeArray[Denomination.DIME.index]
+                ,   "Incorrect change given."
+                );
+            assertEquals
+                (   0
+                ,   resultChange.changeArray[Denomination.QUARTER.index]
+                ,   "Incorrect change given."
+                );
         } catch ( Exception caughtException )
         {
             fail( "Threw exception: " + caughtException.getMessage() );

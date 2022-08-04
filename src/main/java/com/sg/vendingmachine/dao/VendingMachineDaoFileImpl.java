@@ -15,7 +15,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao
      * @param itemAsText String to be converted into an Item object.
      * @return Item object that contains the data from the string representation.
      */
-    private Item unmarshallItem(String itemAsText)
+    private Item unmarshallItem( String itemAsText )
     {
         String[] itemTokens = itemAsText.split(DELIMITER);
         return new Item(itemTokens[0], itemTokens[1], Integer.parseInt(itemTokens[2]), Integer.parseInt(itemTokens[3]));
@@ -26,7 +26,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao
      * @param item Item to be converted to string.
      * @return String representation of item object.
      */
-    private String marshallItem(Item item)
+    private String marshallItem( Item item )
     {
         String itemAsText = item.getButtonID() + DELIMITER;
         itemAsText += item.getName() + DELIMITER;
@@ -45,14 +45,13 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao
 
         try
         {
-            scanner = new Scanner(new BufferedReader(new FileReader(INVENTORY_FILE)));
-        } catch (FileNotFoundException e)
+            scanner = new Scanner( new BufferedReader ( new FileReader ( INVENTORY_FILE ) ));
+        } catch ( FileNotFoundException e )
         {
-            throw new VendingMachinePersistenceException(
-                    "Could not load inventory data into memory.", e);
+            throw new VendingMachinePersistenceException( "Could not load inventory data into memory.", e );
         }
 
-        while (scanner.hasNextLine()) {
+        while ( scanner.hasNextLine() ) {
             Item.addItem
             (   unmarshallItem
                 (   scanner.nextLine()
@@ -72,17 +71,17 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao
 
         try
         {
-            out = new PrintWriter(new FileWriter(INVENTORY_FILE));
-        } catch (IOException e)
+            out = new PrintWriter( new FileWriter( INVENTORY_FILE) );
+        } catch ( IOException e )
         {
-            throw new VendingMachinePersistenceException("Could not write inventory data.", e);
+            throw new VendingMachinePersistenceException( "Could not write inventory data.", e );
         }
 
         String itemAsText;
         for (Item currentItem : Item.items.values())
         {
-            itemAsText = marshallItem(currentItem);
-            out.println(itemAsText);
+            itemAsText = marshallItem( currentItem );
+            out.println( itemAsText );
             out.flush();
         }
         out.close();

@@ -1,8 +1,5 @@
 package com.sg.vendingmachine.dto;
 
-import com.sg.vendingmachine.service.InsufficientFundsException;
-import com.sg.vendingmachine.service.NoItemInventoryException;
-
 import java.util.HashMap;
 
 public class Item
@@ -16,7 +13,7 @@ public class Item
 
     public static HashMap<String,Item> items = new HashMap<String, Item>();
 
-    public Item(String buttonID, String name, int cost, int inventory)
+    public Item( String buttonID, String name, int cost, int inventory )
     {
         this.buttonID = buttonID;
         this.name = name;
@@ -29,7 +26,7 @@ public class Item
         return buttonID;
     }
 
-    public void setButtonID(String buttonID)
+    public void setButtonID( String buttonID )
     {
         this.buttonID = buttonID;
     }
@@ -54,20 +51,22 @@ public class Item
         inventory--;
     }
 
-    public static void addItem(Item newItem)
+    public static void addItem( Item newItem )
     {
-        Item.items.put(newItem.getButtonID(), newItem);
+        Item.items.put( newItem.getButtonID(), newItem );
     }
 
 
     @Override
     public String toString()
     {
-        return "Item{" +
-                "buttonID='" + buttonID + '\'' +
-                ", name='" + name + '\'' +
-                ", cost=" + cost +
-                ", inventory=" + inventory +
-                '}';
+        return
+            (   "Item{"
+            +   "buttonID='" + buttonID + "'"
+            +   ", name='" + name + "'"
+            +   ", cost=" + cost
+            +   ", inventory=" + inventory
+            +   "}"
+            );
     }
 }
