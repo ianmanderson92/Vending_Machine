@@ -31,7 +31,6 @@ public class VendingMachineController
         while(!exitProgram)
         {
             String userInputMoney;
-            String userItemChoice;
             boolean isNum = false;
             view.displayItems();
             while(!isNum && !exitProgram)
@@ -46,23 +45,17 @@ public class VendingMachineController
                     isNum = service.isNumeric(userInputMoney);
                     if(isNum)
                     {
-                        double UserInputDouble = Double.parseDouble(userInputMoney);
-                        UserInputDouble *= 100.0;
-                        int UserInputInt = (int)UserInputDouble;
+                        double userInputDouble = Double.parseDouble(userInputMoney);
+                        userInputDouble *= 100.0;
+                        int userInputInt = (int)userInputDouble;
                         boolean isItem = false;
 
-                        userItemChoice = getUserChoice();
-                        while(!isItem)
+                        try
                         {
-                            if(Item.items.containsKey(userItemChoice))
-                            {
-                                isItem = true;
-                                vendItem(userItemChoice, UserInputInt);
-                            } else
-                            {
-                                view.displayNoItemError();
-                                throw new NoItemInventoryException();
-                            }
+                            vendItem(getUserChoice(), userInputInt);
+                        } catch (Exception exceptionCaught)
+                        {
+                            view.displayException(exceptionCaught);
                         }
                     }
                 }
@@ -81,21 +74,21 @@ public class VendingMachineController
         return view.getUserChoice();
     }
 
-    public static int vendItem(String buttonID, int payment) throws NoItemInventoryException, InsufficientFundsException, VendingMachinePersistenceException
+    public static int vendItem( String buttonID, int payment ) throws NoItemInventoryException, InsufficientFundsException, VendingMachinePersistenceException
     {
-        Item vendedItem = Item.items.get(buttonID);
-        if (vendedItem ==  null || vendedItem.getInventory() <= 0)
+        Item vendedItem = Item.items.get( buttonID );
+        if ( vendedItem ==  null || vendedItem.getInventory() <= 0 )
         {
-            throw new NoItemInventoryException();
+            throw new NoItemInventoryException( "item not in inventory." );
         }
-        if (payment < vendedItem.getCost())
+        if ( payment < vendedItem.getCost() )
         {
-            throw new InsufficientFundsException();
+            throw new InsufficientFundsException( "insufficient funds to purchase item." );
         }
         vendedItem.decreaseInventory();
         //TODO: remove print statement
         //System.out.println("Change Due: " + (payment - vendedItem.getCost()));
-        Change changeDue = new Change(payment - vendedItem.getCost());
+        Change changeDue = new Change( payment - vendedItem.getCost() );
         return payment - vendedItem.getCost();
     }
 }

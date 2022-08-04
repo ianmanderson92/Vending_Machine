@@ -48,8 +48,9 @@ public class VendingMachineView
         return io.readString("Please input button code for item.");
     }
 
-    public void displayNoItemError()
+    public void displayException(Exception exceptionToDisplay)
     {
-        io.print("Item code invalid.");
+        io.print(exceptionToDisplay.getMessage());
+        io.readString("Press ENTER to continue.");
     }
 }
