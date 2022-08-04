@@ -9,6 +9,8 @@ public class Item
 {
     private String buttonID;
     private String name;
+
+    //TODO: potentially refactor cost to BigDecimal Type.
     private int cost;
     private int inventory;
 

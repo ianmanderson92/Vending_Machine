@@ -86,8 +86,6 @@ public class VendingMachineController
             throw new InsufficientFundsException( "insufficient funds to purchase item." );
         }
         vendedItem.decreaseInventory();
-        //TODO: remove print statement
-        //System.out.println("Change Due: " + (payment - vendedItem.getCost()));
         Change changeDue = new Change( payment - vendedItem.getCost() );
         return payment - vendedItem.getCost();
     }
