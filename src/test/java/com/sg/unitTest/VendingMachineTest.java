@@ -25,8 +25,7 @@ public class VendingMachineTest
     }
 
     /**
-     * Creates a test item and vends it making sure that it was vended and the right
-     * amount of change was given.
+     Creates a test item and vends it making sure that it was vended and the right amount of change was given.
      */
     @Test
     public void testVendItem()
@@ -38,24 +37,24 @@ public class VendingMachineTest
             Vend resultVend = VendingMachineController.vendItem( "ZZ", 105 );
             Change resultChange = resultVend.getChangeDue();
             assertEquals
-                (   0
-                ,   resultChange.changeArray[Denomination.PENNY.index]
-                ,   "Incorrect change given."
+                ( 0
+                    , resultChange.changeArray[ Denomination.PENNY.index ]
+                    , "Incorrect change given."
                 );
             assertEquals
-                (   1
-                ,   resultChange.changeArray[Denomination.NICKEL.index]
-                ,   "Incorrect change given."
+                ( 1
+                    , resultChange.changeArray[ Denomination.NICKEL.index ]
+                    , "Incorrect change given."
                 );
             assertEquals
-                (   0
-                ,   resultChange.changeArray[Denomination.DIME.index]
-                ,   "Incorrect change given."
+                ( 0
+                    , resultChange.changeArray[ Denomination.DIME.index ]
+                    , "Incorrect change given."
                 );
             assertEquals
-                (   0
-                ,   resultChange.changeArray[Denomination.QUARTER.index]
-                ,   "Incorrect change given."
+                ( 0
+                    , resultChange.changeArray[ Denomination.QUARTER.index ]
+                    , "Incorrect change given."
                 );
         } catch ( Exception caughtException )
         {
@@ -64,8 +63,7 @@ public class VendingMachineTest
     }
 
     /**
-     * Tries to vend an item that is not in inventory to make sure the NoItemInventoryException
-     * is thrown.
+     Tries to vend an item that is not in inventory to make sure the NoItemInventoryException is thrown.
      */
     @Test
     public void testVendNoInventory()
@@ -73,7 +71,7 @@ public class VendingMachineTest
         try
         {
             VendingMachineController.vendItem( "ZX", 88 );
-            fail( "Vended a nonexsisting item.");
+            fail( "Vended a nonexsisting item." );
         } catch ( Exception caughtException )
         {
             //don't display anything because catching is expected to pass.
@@ -81,8 +79,7 @@ public class VendingMachineTest
     }
 
     /**
-     * Tries to vend an item with insufficient funds to make sure the InsufficientFundsException
-     * is thrown.
+     Tries to vend an item with insufficient funds to make sure the InsufficientFundsException is thrown.
      */
     @Test
     public void testVendInsufficientFunds()

@@ -12,11 +12,12 @@ import com.sg.vendingmachine.ui.VendingMachineView;
 
 public class VendingMachineController
 {
-    private VendingMachineView view;
-    private VendingMachineServiceLayer service;
-    private VendingMachineAuditDao auditDao;
+    private final VendingMachineView view;
+    private final VendingMachineServiceLayer service;
+    private final VendingMachineAuditDao auditDao;
 
-    public VendingMachineController(VendingMachineServiceLayer myService, VendingMachineView myView, VendingMachineAuditDao myAuditDao)
+    public VendingMachineController( VendingMachineServiceLayer myService, VendingMachineView myView,
+                                     VendingMachineAuditDao myAuditDao )
     {
         this.service = myService;
         this.view = myView;
@@ -24,47 +25,48 @@ public class VendingMachineController
     }
 
     /**
-     * main program loop
-     * @throws VendingMachinePersistenceException if the audit cannot write the vend entry to the audit file.
+     main program loop
+     @throws VendingMachinePersistenceException if the audit cannot write the vend entry to the audit file.
      */
     public void run() throws VendingMachinePersistenceException
     {
         boolean exitProgram = false;
         service.loadInventory();
 
-        while(!exitProgram)
+        while ( !exitProgram )
         {
             String userInputMoney;
             boolean isNum = false;
             view.displayItems();
-            while(!isNum && !exitProgram)
+            while ( !isNum && !exitProgram )
             {
                 userInputMoney = getUserInput();
 
-                if(userInputMoney.equals(""))
+                if ( userInputMoney.equals( "" ) )
                 {
                     exitProgram = true;
-                } else
+                }
+                else
                 {
-                    isNum = service.isNumeric(userInputMoney);
-                    if(isNum)
+                    isNum = service.isNumeric( userInputMoney );
+                    if ( isNum )
                     {
-                        double userInputDouble = Double.parseDouble(userInputMoney);
+                        double userInputDouble = Double.parseDouble( userInputMoney );
                         userInputDouble *= 100.0;
 
-                        int userInputInt = (int)userInputDouble;
+                        int userInputInt = (int) userInputDouble;
                         String userChoice = getUserChoice();
                         try
                         {
                             Vend vendedItem = vendItem( userChoice, userInputInt );
-                            auditDao.writeVendAuditEntry( userChoice, userInputInt, vendedItem);
-                            view.displayVendedItem(vendedItem.getVendedItem());
-                            view.displayChange(vendedItem.getChangeDue());
+                            auditDao.writeVendAuditEntry( userChoice, userInputInt, vendedItem );
+                            view.displayVendedItem( vendedItem.getVendedItem() );
+                            view.displayChange( vendedItem.getChangeDue() );
                             view.displayWaitMessage();
-                        } catch (Exception exceptionCaught)
+                        } catch ( Exception exceptionCaught )
                         {
                             auditDao.writeErrorAuditEntry( userChoice, userInputInt, exceptionCaught );
-                            view.displayException(exceptionCaught);
+                            view.displayException( exceptionCaught );
                         }
                     }
                 }
@@ -84,18 +86,20 @@ public class VendingMachineController
     }
 
     /**
-     Method used to initiate and carry out the vending of the chosen item.  Performing operation validation along the way.
-
-     * @param buttonID String representation of the button ID linked to the item in the items hashmap.
-     * @param payment int representation of the amount of money inputted by the user in cents.
-     * @return the vended item stored in a Vend object.
-     * @throws NoItemInventoryException if there is no item associated with the input buttonId or the inventory level is 0.
-     * @throws InsufficientFundsException if the user input an insufficient amount of funds to vend the selected item.
+     Method used to initiate and carry out the vending of the chosen item.  Performing operation validation along the
+     way.
+     @param buttonID String representation of the button ID linked to the item in the items hashmap.
+     @param payment  int representation of the amount of money inputted by the user in cents.
+     @return the vended item stored in a Vend object.
+     @throws NoItemInventoryException   if there is no item associated with the input buttonId or the inventory level is
+     0.
+     @throws InsufficientFundsException if the user input an insufficient amount of funds to vend the selected item.
      */
-    public static Vend vendItem(String buttonID, int payment ) throws NoItemInventoryException, InsufficientFundsException
+    public static Vend vendItem( String buttonID, int payment ) throws NoItemInventoryException,
+        InsufficientFundsException
     {
         Item vendedItem = Item.items.get( buttonID );
-        if ( vendedItem ==  null || vendedItem.getInventory() <= 0 )
+        if ( vendedItem == null || vendedItem.getInventory() <= 0 )
         {
             throw new NoItemInventoryException( "item not in inventory." );
         }
@@ -105,6 +109,6 @@ public class VendingMachineController
         }
         vendedItem.decreaseInventory();
         Change changeDue = new Change( payment - vendedItem.getCost() );
-        return new Vend(vendedItem, changeDue);
+        return new Vend( vendedItem, changeDue );
     }
 }

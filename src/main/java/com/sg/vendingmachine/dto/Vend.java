@@ -2,10 +2,10 @@ package com.sg.vendingmachine.dto;
 
 public class Vend
 {
-    private Item vendedItem;
-    private Change changeDue;
+    private final Item vendedItem;
+    private final Change changeDue;
 
-    public Vend(Item vendedItem, Change changeDue )
+    public Vend( Item vendedItem, Change changeDue )
     {
         this.vendedItem = vendedItem;
         this.changeDue = changeDue;
@@ -26,7 +26,7 @@ public class Vend
     {
         return
             (   vendedItem.toString()
-            +   changeDue.toString()
+                + changeDue.toString()
             );
     }
 }

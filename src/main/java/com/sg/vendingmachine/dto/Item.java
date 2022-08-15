@@ -5,13 +5,13 @@ import java.util.HashMap;
 public class Item
 {
     private String buttonID;
-    private String name;
+    private final String name;
 
     //TODO: potentially refactor cost to BigDecimal Type.
-    private int cost;
+    private final int cost;
     private int inventory;
 
-    public static HashMap<String,Item> items = new HashMap<String, Item>();
+    public static HashMap<String,Item> items = new HashMap<String,Item>();
 
     public Item( String buttonID, String name, int cost, int inventory )
     {
@@ -56,17 +56,16 @@ public class Item
         Item.items.put( newItem.getButtonID(), newItem );
     }
 
-
     @Override
     public String toString()
     {
         return
             (   "Item{"
-            +   "buttonID='" + buttonID + "'"
-            +   ", name='" + name + "'"
-            +   ", cost=" + cost
-            +   ", inventory=" + inventory
-            +   "}"
+                + "buttonID='" + buttonID + "'"
+                + ", name='" + name + "'"
+                + ", cost=" + cost
+                + ", inventory=" + inventory
+                + "}"
             );
     }
 }

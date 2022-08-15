@@ -5,24 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20ddfc34-88da-4700-819b-bec503a3d907" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Vend.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audit.txt" beforeDir="false" afterPath="$PROJECT_DIR$/audit.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/controller/VendingMachineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/controller/VendingMachineController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDaoFileImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDaoFileImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDaoFileImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDaoFileImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachinePersistenceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachinePersistenceException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Change.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Change.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Denomination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Denomination.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Vend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Vend.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/InsufficientFundsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/InsufficientFundsException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/NoItemInventoryException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/NoItemInventoryException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/VendingMachineServiceLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/VendingMachineServiceLayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/VendingMachineServiceLayerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/VendingMachineServiceLayerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/UserIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/UserIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/UserIOConsoleImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/UserIOConsoleImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/VendingMachineView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/VendingMachineView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/sg/unitTest/VendingMachineTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/sg/unitTest/VendingMachineTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendingInventory.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vendingInventory.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +56,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/ianma/git/c262-a3-intermediate-java-ianmanderson92/c262-a3-Vending-machine/Vending_Machine",
     "settings.editor.selected.configurable": "preferences.sourceCode.Java"
   }
 }]]></component>
@@ -81,7 +83,9 @@
       <option name="presentableId" value="Default" />
       <updated>1659412005239</updated>
       <workItem from="1659412006681" duration="46027000" />
-      <workItem from="1659586406122" duration="6966000" />
+      <workItem from="1659586406122" duration="7497000" />
+      <workItem from="1659624090272" duration="895000" />
+      <workItem from="1660536344953" duration="230000" />
     </task>
     <servers />
   </component>
